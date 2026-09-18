@@ -1,0 +1,87 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@mts241alikhlash/ui/card'
+import { toast } from 'vue-sonner'
+import type { InventoryMetadata, AssetSavePayload } from '../types'
+import AssetForm from '../components/AssetForm.vue'
+import { Button } from '@mts241alikhlash/ui'
+import { ChevronLeft } from 'lucide-vue-next'
+import { inventoryReferenceService } from '../services/inventoryReferenceService'
+import { assetService } from '../services/assetService'
+
+const router = useRouter()
+const isSaving = ref(false)
+const metadata = ref<InventoryMetadata>({
+  categories: [],
+  locations: [],
+  conditions: [],
+  statuses: [],
+  fundingSources: [],
+})
+
+async function loadMetadata() {
+  try {
+    const data = await inventoryReferenceService.fetchMetadata()
+    if (data) {
+      metadata.value = data
+    }
+  } catch {
+    toast.error('Gagal memuat metadata referensi.')
+  }
+}
+
+onMounted(() => {
+  void loadMetadata()
+})
+
+async function handleSave(payload: AssetSavePayload) {
+  isSaving.value = true
+  const created = await assetService.create(payload)
+  isSaving.value = false
+  if (created) void router.push({ name: 'inventory-assets' })
+}
+
+function handleCancel() {
+  void router.push({ name: 'inventory-assets' })
+}
+</script>
+
+<template>
+  <div class="p-4 md:p-6 lg:p-8 w-full">
+    <Card
+      class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
+    >
+      <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
+        <Button
+          variant="outline"
+          size="icon"
+          @click="handleCancel"
+        >
+          <ChevronLeft class="h-4 w-4" />
+        </Button>
+        <div>
+          <CardTitle class="text-2xl font-bold tracking-tight"
+            >Tambah Aset Baru</CardTitle
+          >
+          <p class="text-sm text-muted-foreground mt-1">
+            Isi detail data aset logistik sekolah secara lengkap.
+          </p>
+        </div>
+      </CardHeader>
+      <CardContent class="p-6">
+        <AssetForm
+          :metadata="metadata"
+          :is-saving="isSaving"
+          @save="handleSave"
+          @cancel="handleCancel"
+        />
+      </CardContent>
+    </Card>
+  </div>
+</template>
