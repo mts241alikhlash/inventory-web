@@ -1,0 +1,246 @@
+<script setup lang="ts">
+import { computed, watch } from 'vue'
+import { useForm } from 'vee-validate'
+import * as z from 'zod'
+import { toTypedSchema } from '@vee-validate/zod'
+import {
+  Button,
+  Input,
+  ScrollArea,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Textarea,
+} from '@mts241alikhlash/ui'
+import type { InventoryReferenceItem } from '../types'
+
+const props = defineProps<{
+  open: boolean
+  item: InventoryReferenceItem | null
+  isSaving: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:open', val: boolean): void
+  (e: 'save', payload: Omit<InventoryReferenceItem, 'id'>): void
+}>()
+
+const isEdit = computed(() => !!props.item)
+
+const formSchema = toTypedSchema(
+  z.object({
+    code: z.string().min(1, 'Kode wajib diisi'),
+    name: z.string().min(1, 'Nama lokasi wajib diisi'),
+    building: z.string().optional().default(''),
+    room: z.string().optional().default(''),
+    rack: z.string().optional().default(''),
+    description: z.string().optional().default(''),
+  }),
+)
+
+interface LocationFormValues {
+  code: string
+  name: string
+  building?: string
+  room?: string
+  rack?: string
+  description?: string
+}
+
+const { handleSubmit, resetForm } = useForm<LocationFormValues>({
+  validationSchema: formSchema,
+})
+
+watch(
+  () => [props.open, props.item],
+  () => {
+    if (props.open) {
+      if (props.item) {
+        resetForm({
+          values: {
+            code: props.item.code || '',
+            name: props.item.name || '',
+            building: props.item.building ?? '',
+            room: props.item.room ?? '',
+            rack: props.item.rack ?? '',
+            description: props.item.description ?? '',
+          },
+        })
+      } else {
+        resetForm({
+          values: {
+            code: '',
+            name: '',
+            building: '',
+            room: '',
+            rack: '',
+            description: '',
+          },
+        })
+      }
+    }
+  },
+  { immediate: true },
+)
+
+const onSubmit = handleSubmit((values) => {
+  emit('save', values)
+})
+</script>
+
+<template>
+  <Dialog
+    :open="open"
+    @update:open="emit('update:open', $event)"
+  >
+    <DialogContent class="sm:max-w-md flex flex-col gap-0 p-0 overflow-hidden">
+      <DialogHeader class="px-6 py-5 border-b shrink-0 bg-muted/20">
+        <DialogTitle class="text-xl font-semibold tracking-tight">
+          {{ isEdit ? 'Ubah Lokasi' : 'Tambah Lokasi' }}
+        </DialogTitle>
+      </DialogHeader>
+
+      <form
+        class="flex flex-col flex-1 min-h-0"
+        @submit="onSubmit"
+      >
+        <ScrollArea class="flex-1 min-h-0 px-1 py-4">
+          <div class="space-y-4">
+            <FormField
+              v-slot="{ componentField }"
+              name="code"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium">Kode Lokasi</FormLabel>
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    placeholder="Contoh: LOC-LAB-KOMP"
+                    :disabled="isSaving || isEdit"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField
+              v-slot="{ componentField }"
+              name="name"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium">Nama Lokasi</FormLabel>
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    placeholder="Contoh: Laboratorium Komputer"
+                    :disabled="isSaving"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField
+              v-slot="{ componentField }"
+              name="building"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium">Gedung</FormLabel>
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    placeholder="Contoh: Gedung B Lantai 2"
+                    :disabled="isSaving"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField
+              v-slot="{ componentField }"
+              name="room"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium">Ruangan</FormLabel>
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    placeholder="Contoh: Ruang Lab 01"
+                    :disabled="isSaving"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField
+              v-slot="{ componentField }"
+              name="rack"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium"
+                  >Rak (Opsional)</FormLabel
+                >
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    placeholder="Contoh: Lemari A"
+                    :disabled="isSaving"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField
+              v-slot="{ componentField }"
+              name="description"
+            >
+              <FormItem>
+                <FormLabel class="text-sm font-medium"
+                  >Keterangan / Deskripsi</FormLabel
+                >
+                <FormControl>
+                  <Textarea
+                    v-bind="componentField"
+                    placeholder="Tambahkan keterangan lokasi jika ada..."
+                    :disabled="isSaving"
+                    rows="3"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+          </div>
+        </ScrollArea>
+
+        <DialogFooter
+          class="px-6 py-4 border-t shrink-0 flex sm:justify-between w-full bg-background"
+        >
+          <Button
+            type="button"
+            variant="outline"
+            :disabled="isSaving"
+            @click="emit('update:open', false)"
+          >
+            Batal
+          </Button>
+          <Button
+            type="submit"
+            :disabled="isSaving"
+          >
+            {{ isSaving ? 'Menyimpan...' : 'Simpan' }}
+          </Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </Dialog>
+</template>
