@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
-import { DataTable } from '@mts241alikhlash/ui'
+import { DataTable, SearchInput } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
 import { Card, CardHeader, CardTitle } from '@mts241alikhlash/ui/card'
-import { Input } from '@mts241alikhlash/ui/input'
 import {
   Select,
   SelectContent,
@@ -12,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@mts241alikhlash/ui/select'
-import { Printer, Search } from '@lucide/vue'
+import { Printer } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import type {
@@ -228,16 +227,11 @@ onMounted(async () => {
             </SelectContent>
           </Select>
 
-          <div class="relative lg:ml-auto lg:w-[240px]">
-            <Search
-              class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-            />
-            <Input
-              v-model="filters.keyword"
-              placeholder="Cari aset..."
-              class="pl-9"
-            />
-          </div>
+          <SearchInput
+            v-model="filters.keyword"
+            label="Cari aset"
+            class="lg:ml-auto"
+          />
         </div>
 
         <DataTable
