@@ -2,10 +2,9 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { watchDebounced } from '@vueuse/core'
-import { DataTable } from '@mts241alikhlash/ui'
+import { DataTable, SearchInput } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
 import { Card, CardHeader, CardTitle } from '@mts241alikhlash/ui/card'
-import { Input } from '@mts241alikhlash/ui/input'
 import {
   Select,
   SelectContent,
@@ -21,7 +20,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@mts241alikhlash/ui/dialog'
-import { Plus, Search, Filter } from '@lucide/vue'
+import { Plus, Filter } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import { useRoleGuard } from '@/features/platform/auth'
@@ -290,30 +289,20 @@ onMounted(async () => {
               </SelectContent>
             </Select>
 
-            <div class="relative lg:ml-auto lg:w-[240px]">
-              <Search
-                class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-              />
-              <Input
-                v-model="filters.keyword"
-                placeholder="Cari aset..."
-                class="pl-9"
-              />
-            </div>
+            <SearchInput
+              v-model="filters.keyword"
+              label="Cari aset"
+              class="lg:ml-auto"
+            />
           </div>
 
           <div class="flex flex-col lg:hidden gap-3">
             <div class="flex items-center gap-2">
-              <div class="relative flex-1">
-                <Search
-                  class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-                />
-                <Input
-                  v-model="filters.keyword"
-                  placeholder="Cari aset..."
-                  class="pl-9"
-                />
-              </div>
+              <SearchInput
+                v-model="filters.keyword"
+                label="Cari aset"
+                class="flex-1"
+              />
               <Button
                 variant="outline"
                 class="relative shrink-0"

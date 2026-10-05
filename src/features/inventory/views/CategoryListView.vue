@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
-import { DataTable, ActionCell } from '@mts241alikhlash/ui'
+import { DataTable, ActionCell, SearchInput } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
 import { Card, CardHeader, CardTitle } from '@mts241alikhlash/ui/card'
-import { Input } from '@mts241alikhlash/ui/input'
-import { Plus, Search } from '@lucide/vue'
+import { Plus } from '@lucide/vue'
 import { h } from 'vue'
 import { useRoleGuard } from '@/features/platform/auth'
 import { inventoryReferenceCrud } from '../services/inventoryReferenceCrudService'
@@ -134,16 +133,10 @@ onMounted(() => {
 
       <div class="p-6 space-y-4">
         <div class="flex items-center justify-between gap-4">
-          <div class="relative w-full max-w-sm">
-            <Search
-              class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-            />
-            <Input
-              v-model="searchQuery"
-              placeholder="Cari kode atau nama kategori..."
-              class="pl-9"
-            />
-          </div>
+          <SearchInput
+            v-model="searchQuery"
+            label="Cari kode atau nama kategori"
+          />
         </div>
 
         <DataTable
