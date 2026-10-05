@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@mts241alikhlash/ui/select'
-import { Printer, Search } from 'lucide-vue-next'
+import { Printer, Search } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import type {

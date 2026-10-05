@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@mts241alikhlash/ui/dialog'
-import { Plus, Search, Filter } from 'lucide-vue-next'
+import { Plus, Search, Filter } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import { useRoleGuard } from '@/features/platform/auth'

@@ -11,7 +11,7 @@ import { toast } from 'vue-sonner'
 import type { InventoryMetadata, AssetSavePayload } from '../types'
 import AssetForm from '../components/AssetForm.vue'
 import { Button } from '@mts241alikhlash/ui'
-import { ChevronLeft } from 'lucide-vue-next'
+import { ChevronLeft } from '@lucide/vue'
 import { inventoryReferenceService } from '../services/inventoryReferenceService'
 import { assetService } from '../services/assetService'
 
