@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Plus, RotateCcw } from 'lucide-vue-next'
+import { Plus, RotateCcw } from '@lucide/vue'
 import { DataTable, Badge } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
 import {

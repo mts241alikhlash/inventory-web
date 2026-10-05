@@ -5,7 +5,7 @@ import {
   ClipboardList,
   CheckSquare,
   Printer,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 
 export type {
   SubMenuItem,

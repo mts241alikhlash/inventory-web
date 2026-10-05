@@ -23,7 +23,7 @@ import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import type { ColumnDef } from '@tanstack/vue-table'
 import { h } from 'vue'
-import { Check, X } from 'lucide-vue-next'
+import { Check, X } from '@lucide/vue'
 import { useRoleGuard } from '@/features/platform/auth'
 import { approvalService } from '../services/approvalService'
 import type {

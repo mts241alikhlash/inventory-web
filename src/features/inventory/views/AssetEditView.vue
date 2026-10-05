@@ -43,7 +43,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@mts241alikhlash/ui/dialog'
-import { ChevronLeft, Plus, Printer } from 'lucide-vue-next'
+import { ChevronLeft, Plus, Printer } from '@lucide/vue'
 import { inventoryReferenceService } from '../services/inventoryReferenceService'
 import { assetService } from '../services/assetService'
 import { notifyIfOutage } from '@mts241alikhlash/web-shared/utils/notify-outage'

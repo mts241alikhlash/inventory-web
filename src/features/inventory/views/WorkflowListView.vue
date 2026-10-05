@@ -19,7 +19,7 @@ import {
 } from '@mts241alikhlash/ui/dialog'
 import { Input } from '@mts241alikhlash/ui/input'
 import { Label } from '@mts241alikhlash/ui/label'
-import { Shield, ArrowRight, Plus, Trash2 } from 'lucide-vue-next'
+import { Shield, ArrowRight, Plus, Trash2 } from '@lucide/vue'
 import { useAuthSession, useRoleGuard } from '@/features/platform/auth'
 import type { ApprovalWorkflow } from '../types'
 import { approvalService } from '../services/approvalService'

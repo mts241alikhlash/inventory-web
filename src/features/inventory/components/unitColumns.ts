@@ -2,7 +2,7 @@ import type { InventoryAssetUnit } from '../types'
 import { Checkbox } from '@mts241alikhlash/ui/checkbox'
 import { Button } from '@mts241alikhlash/ui/button'
 import type { ColumnDef } from '@tanstack/vue-table'
-import { Pencil, Printer, Trash2 } from 'lucide-vue-next'
+import { Pencil, Printer, Trash2 } from '@lucide/vue'
 import { h } from 'vue'
 
 export interface UnitColumnActions {
