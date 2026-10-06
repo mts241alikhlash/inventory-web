@@ -170,7 +170,7 @@ onMounted(() => {
                 <p class="text-xs text-muted-foreground mt-0.5">
                   Entity Target:
                   <span
-                    class="font-mono text-primary bg-primary/5 px-1.5 py-0.5 rounded"
+                    class="font-mono text-primary bg-primary/5 px-1.5 py-0.5 rounded-md"
                     >{{ wf.targetEntity }}</span
                   >
                 </p>

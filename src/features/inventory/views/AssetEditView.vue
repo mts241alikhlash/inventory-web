@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useBreadcrumbs } from '@mts241alikhlash/web-shared/composables/useBreadcrumbs'
 import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import {
@@ -7,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@mts241alikhlash/ui/card'
-import { DataTable } from '@mts241alikhlash/ui'
+import { DataTable, BackButton } from '@mts241alikhlash/ui'
 import { toast } from 'vue-sonner'
 import type {
   InventoryAsset,
@@ -43,7 +44,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@mts241alikhlash/ui/dialog'
-import { ChevronLeft, Plus, Printer } from '@lucide/vue'
+import { Plus, Printer } from '@lucide/vue'
 import { inventoryReferenceService } from '../services/inventoryReferenceService'
 import { assetService } from '../services/assetService'
 import { notifyIfOutage } from '@mts241alikhlash/web-shared/utils/notify-outage'
@@ -208,6 +209,13 @@ const unitColumns = computed(() =>
     },
   }),
 )
+
+useBreadcrumbs(() => {
+  const name = asset.value?.name
+  if (!name) return null
+  const trail = route.meta.breadcrumbs ?? []
+  return [...trail.slice(0, -1), { title: name }]
+})
 </script>
 
 <template>
@@ -216,13 +224,10 @@ const unitColumns = computed(() =>
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
       <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
-        <Button
-          variant="outline"
-          size="icon"
+        <BackButton
+          label="Kembali ke daftar aset"
           @click="handleCancel"
-        >
-          <ChevronLeft class="h-4 w-4" />
-        </Button>
+        />
         <div>
           <CardTitle class="text-2xl font-bold tracking-tight"
             >Ubah Detail Aset</CardTitle

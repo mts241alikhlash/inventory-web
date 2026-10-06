@@ -10,8 +10,7 @@ import {
 import { toast } from 'vue-sonner'
 import type { InventoryMetadata, AssetSavePayload } from '../types'
 import AssetForm from '../components/AssetForm.vue'
-import { Button } from '@mts241alikhlash/ui'
-import { ChevronLeft } from '@lucide/vue'
+import { BackButton } from '@mts241alikhlash/ui'
 import { inventoryReferenceService } from '../services/inventoryReferenceService'
 import { assetService } from '../services/assetService'
 
@@ -58,13 +57,10 @@ function handleCancel() {
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
       <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
-        <Button
-          variant="outline"
-          size="icon"
+        <BackButton
+          label="Kembali ke daftar aset"
           @click="handleCancel"
-        >
-          <ChevronLeft class="h-4 w-4" />
-        </Button>
+        />
         <div>
           <CardTitle class="text-2xl font-bold tracking-tight"
             >Tambah Aset Baru</CardTitle

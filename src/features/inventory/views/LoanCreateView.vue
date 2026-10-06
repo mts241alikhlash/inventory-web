@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Checkbox } from '@mts241alikhlash/ui/checkbox'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
@@ -7,11 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@mts241alikhlash/ui/card'
-import { Button } from '@mts241alikhlash/ui'
+import { Button, BackButton } from '@mts241alikhlash/ui'
 import { Input } from '@mts241alikhlash/ui/input'
 import { Label } from '@mts241alikhlash/ui/label'
 import { DataTable, Badge, DatePicker } from '@mts241alikhlash/ui'
-import { ChevronLeft } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { getIndonesianErrorMessage } from '@mts241alikhlash/web-shared/utils/error-handler'
 import type { InventoryAssetUnit } from '../types'
@@ -40,21 +40,20 @@ const createForm = ref({
 const selectColumn: ColumnDef<LoanUnitRow> = {
   id: 'select',
   header: ({ table }) =>
-    h('input', {
-      type: 'checkbox',
-      checked: table.getIsAllPageRowsSelected(),
-      indeterminate: table.getIsSomePageRowsSelected(),
-      onChange: (e: Event) =>
-        table.toggleAllPageRowsSelected((e.target as HTMLInputElement).checked),
-      class: 'h-4 w-4 rounded border-gray-300 cursor-pointer',
+    h(Checkbox, {
+      modelValue:
+        table.getIsAllPageRowsSelected() ||
+        (table.getIsSomePageRowsSelected() && 'indeterminate'),
+      'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+        table.toggleAllPageRowsSelected(value === true),
+      ariaLabel: 'Pilih semua',
     }),
   cell: ({ row }) =>
-    h('input', {
-      type: 'checkbox',
-      checked: row.getIsSelected(),
-      onChange: (e: Event) =>
-        row.toggleSelected((e.target as HTMLInputElement).checked),
-      class: 'h-4 w-4 rounded border-gray-300 cursor-pointer',
+    h(Checkbox, {
+      modelValue: row.getIsSelected(),
+      'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+        row.toggleSelected(value === true),
+      ariaLabel: 'Pilih baris',
     }),
   enableSorting: false,
   enableHiding: false,
@@ -165,13 +164,10 @@ function handleCancel() {
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
       <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
-        <Button
-          variant="outline"
-          size="icon"
+        <BackButton
+          label="Kembali ke daftar peminjaman"
           @click="handleCancel"
-        >
-          <ChevronLeft class="h-4 w-4" />
-        </Button>
+        />
         <div>
           <CardTitle class="text-2xl font-bold tracking-tight"
             >Pinjam Aset Baru</CardTitle
