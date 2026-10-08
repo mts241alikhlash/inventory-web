@@ -15,7 +15,8 @@ const platformRoot = path.resolve(
 
 const IDENTITY_URL = process.env.IDENTITY_SERVICE_URL ?? 'http://localhost:3000'
 const PORTAL_URL = process.env.PORTAL_SERVICE_URL ?? 'http://localhost:3600'
-const INVENTORY_URL = process.env.INVENTORY_SERVICE_URL ?? 'http://localhost:3300'
+const INVENTORY_URL =
+  process.env.INVENTORY_SERVICE_URL ?? 'http://localhost:3300'
 
 const SERVICE_URL = {
   identity: IDENTITY_URL,
@@ -61,6 +62,9 @@ const unroutedProxy: ProxyTable = Object.fromEntries(
 )
 
 export default defineConfig(({ mode }) => ({
+  optimizeDeps: {
+    include: ['@unovis/ts > striptags'],
+  },
   server: {
     port: 5174,
     proxy: { ...serviceProxy, ...healthProxy, ...unroutedProxy },
