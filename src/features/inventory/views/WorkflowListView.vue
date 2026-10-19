@@ -123,29 +123,30 @@ onMounted(() => {
 <template>
   <div class="p-4 md:p-6 lg:p-8">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader class="border-b px-6 py-5">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <CardTitle class="text-2xl font-bold tracking-tight"
-              >Alur Kerja Persetujuan (Workflow)</CardTitle
+      <CardHeader standard>
+        <div class="flex items-center gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <CardTitle size="lg">Alur Kerja Persetujuan (Workflow)</CardTitle>
+              <p class="text-sm text-muted-foreground mt-1">
+                Konfigurasi persetujuan berjenjang untuk peminjaman aset
+                logistik sekolah.
+              </p>
+            </div>
+            <Button
+              v-if="can('inventory-approvals.create')"
+              @click="openForm"
             >
-            <p class="text-sm text-muted-foreground mt-1">
-              Konfigurasi persetujuan berjenjang untuk peminjaman aset logistik
-              sekolah.
-            </p>
+              <Plus class="size-4 mr-1.5" />
+              Susun Alur
+            </Button>
           </div>
-          <Button
-            v-if="can('inventory-approvals.create')"
-            @click="openForm"
-          >
-            <Plus class="size-4 mr-1.5" />
-            Susun Alur
-          </Button>
         </div>
       </CardHeader>
-      <CardContent class="p-6">
+      <CardContent variant="standard">
         <div
           v-if="loading"
           class="text-center text-sm text-muted-foreground py-8"

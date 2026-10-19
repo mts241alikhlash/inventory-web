@@ -133,17 +133,19 @@ onMounted(() => {
 <template>
   <div class="p-4 md:p-6 lg:p-8">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader class="border-b px-6 py-5">
-        <CardTitle class="text-2xl font-bold tracking-tight"
-          >Riwayat Sirkulasi Aset</CardTitle
-        >
-        <p class="text-sm text-muted-foreground mt-1">
-          Pantau seluruh mutasi, peminjaman, dan pengembalian logistik sekolah.
-        </p>
+      <CardHeader standard>
+        <div class="flex items-center gap-3">
+          <CardTitle size="lg">Riwayat Sirkulasi Aset</CardTitle>
+          <p class="text-sm text-muted-foreground mt-1">
+            Pantau seluruh mutasi, peminjaman, dan pengembalian logistik
+            sekolah.
+          </p>
+        </div>
       </CardHeader>
-      <CardContent class="p-6">
+      <CardContent variant="standard">
         <DataTable
           :columns="columns"
           :data="histories"

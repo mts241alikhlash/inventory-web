@@ -221,23 +221,24 @@ useBreadcrumbs(() => {
 <template>
   <div class="p-4 md:p-6 lg:p-8 w-full">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
-        <BackButton
-          label="Kembali ke daftar aset"
-          @click="handleCancel"
-        />
-        <div>
-          <CardTitle class="text-2xl font-bold tracking-tight"
-            >Ubah Detail Aset</CardTitle
-          >
-          <p class="text-sm text-muted-foreground mt-1">
-            Sesuaikan informasi detail aset logistik sekolah di bawah ini.
-          </p>
+      <CardHeader standard>
+        <div class="flex items-center gap-3">
+          <BackButton
+            label="Kembali ke daftar aset"
+            @click="handleCancel"
+          />
+          <div>
+            <CardTitle size="lg">Ubah Detail Aset</CardTitle>
+            <p class="text-sm text-muted-foreground mt-1">
+              Sesuaikan informasi detail aset logistik sekolah di bawah ini.
+            </p>
+          </div>
         </div>
       </CardHeader>
-      <CardContent class="p-6">
+      <CardContent variant="standard">
         <div
           v-if="isLoadingAsset"
           class="flex items-center justify-center py-12"
@@ -257,13 +258,12 @@ useBreadcrumbs(() => {
 
     <Card
       v-if="asset"
+      gap="none"
       class="mt-6 overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader
-        class="flex flex-row items-center justify-between border-b px-6 py-5"
-      >
+      <CardHeader standard>
         <div>
-          <CardTitle class="text-lg font-bold tracking-tight">
+          <CardTitle size="md">
             Unit ({{ asset.units?.length ?? 0 }})
           </CardTitle>
           <p class="text-sm text-muted-foreground mt-1">
@@ -316,7 +316,7 @@ useBreadcrumbs(() => {
           </Button>
         </div>
       </CardHeader>
-      <CardContent class="p-6">
+      <CardContent variant="standard">
         <DataTable
           :columns="unitColumns"
           :data="asset.units ?? []"

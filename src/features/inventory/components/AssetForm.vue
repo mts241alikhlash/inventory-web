@@ -18,10 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
   FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FloatingField,
   Textarea,
 } from '@mts241alikhlash/ui'
 import { Separator } from '@mts241alikhlash/ui/separator'
@@ -194,33 +191,29 @@ const onSubmit = handleSubmit((values) => {
         <h3 class="text-sm font-semibold">Informasi Aset</h3>
         <Separator />
         <div class="grid grid-cols-2 gap-4">
-          <FormField
-            v-slot="{ componentField, errorMessage }"
+          <FloatingField
+            v-slot="{ componentField }"
             name="name"
+            label="Nama Aset"
+            required
           >
-            <FormItem>
-              <FormLabel
-                >Nama Aset <span class="text-destructive">*</span></FormLabel
-              >
+            <div class="content-start">
               <FormControl>
                 <Input
                   v-bind="componentField"
-                  placeholder="Masukkan nama barang/aset"
                   :disabled="isSaving"
                 />
               </FormControl>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
 
-          <FormField
-            v-slot="{ value, handleChange, errorMessage }"
+          <FloatingField
+            v-slot="{ value, handleChange }"
             name="categoryId"
+            label="Kategori"
+            required
           >
-            <FormItem>
-              <FormLabel
-                >Kategori <span class="text-destructive">*</span></FormLabel
-              >
+            <div class="content-start">
               <Select
                 :model-value="value"
                 :disabled="isSaving"
@@ -239,54 +232,47 @@ const onSubmit = handleSubmit((values) => {
                   </SelectItem>
                 </SelectContent>
               </Select>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
 
-          <FormField
-            v-slot="{ componentField, errorMessage }"
+          <FloatingField
+            v-slot="{ componentField }"
             name="brand"
+            label="Merek"
           >
-            <FormItem>
-              <FormLabel>Merek</FormLabel>
+            <div class="content-start">
               <FormControl>
                 <Input
                   v-bind="componentField"
-                  placeholder="Contoh: Asus, LG"
                   :disabled="isSaving"
                 />
               </FormControl>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
 
-          <FormField
-            v-slot="{ componentField, errorMessage }"
+          <FloatingField
+            v-slot="{ componentField }"
             name="model"
+            label="Model / Tipe"
           >
-            <FormItem>
-              <FormLabel>Model / Tipe</FormLabel>
+            <div class="content-start">
               <FormControl>
                 <Input
                   v-bind="componentField"
-                  placeholder="Contoh: ROG, 24MK600"
                   :disabled="isSaving"
                 />
               </FormControl>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
 
           <template v-if="!isEdit">
-            <FormField
-              v-slot="{ value, handleChange, errorMessage }"
+            <FloatingField
+              v-slot="{ value, handleChange }"
               name="quantity"
+              label="Jumlah Unit"
+              required
             >
-              <FormItem>
-                <FormLabel
-                  >Jumlah Unit
-                  <span class="text-destructive">*</span></FormLabel
-                >
+              <div class="content-start">
                 <FormControl>
                   <Input
                     type="number"
@@ -296,18 +282,16 @@ const onSubmit = handleSubmit((values) => {
                     @update:model-value="handleChange(Number($event))"
                   />
                 </FormControl>
-                <FormMessage>{{ errorMessage }}</FormMessage>
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
-              v-slot="{ value, handleChange, errorMessage }"
+            <FloatingField
+              v-slot="{ value, handleChange }"
               name="locationId"
+              label="Lokasi"
+              required
             >
-              <FormItem>
-                <FormLabel
-                  >Lokasi <span class="text-destructive">*</span></FormLabel
-                >
+              <div class="content-start">
                 <Select
                   :model-value="value"
                   :disabled="isSaving"
@@ -326,18 +310,16 @@ const onSubmit = handleSubmit((values) => {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage>{{ errorMessage }}</FormMessage>
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
-              v-slot="{ value, handleChange, errorMessage }"
+            <FloatingField
+              v-slot="{ value, handleChange }"
               name="statusId"
+              label="Status"
+              required
             >
-              <FormItem>
-                <FormLabel
-                  >Status <span class="text-destructive">*</span></FormLabel
-                >
+              <div class="content-start">
                 <Select
                   :model-value="value"
                   :disabled="isSaving"
@@ -356,18 +338,16 @@ const onSubmit = handleSubmit((values) => {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage>{{ errorMessage }}</FormMessage>
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
-              v-slot="{ value, handleChange, errorMessage }"
+            <FloatingField
+              v-slot="{ value, handleChange }"
               name="conditionId"
+              label="Kondisi"
+              required
             >
-              <FormItem>
-                <FormLabel
-                  >Kondisi <span class="text-destructive">*</span></FormLabel
-                >
+              <div class="content-start">
                 <Select
                   :model-value="value"
                   :disabled="isSaving"
@@ -386,9 +366,8 @@ const onSubmit = handleSubmit((values) => {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage>{{ errorMessage }}</FormMessage>
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
           </template>
         </div>
       </div>
@@ -398,15 +377,13 @@ const onSubmit = handleSubmit((values) => {
       >
         <h3 class="text-sm font-semibold">Keuangan & Administrasi</h3>
         <Separator />
-        <FormField
-          v-slot="{ value, handleChange, errorMessage }"
+        <FloatingField
+          v-slot="{ value, handleChange }"
           name="purchaseDate"
+          label="Tanggal Pembelian"
+          required
         >
-          <FormItem>
-            <FormLabel
-              >Tanggal Pembelian
-              <span class="text-destructive">*</span></FormLabel
-            >
+          <div class="content-start">
             <FormControl>
               <DatePicker
                 :model-value="value"
@@ -414,20 +391,17 @@ const onSubmit = handleSubmit((values) => {
                 @update:model-value="handleChange"
               />
             </FormControl>
-            <FormMessage>{{ errorMessage }}</FormMessage>
-          </FormItem>
-        </FormField>
+          </div>
+        </FloatingField>
 
         <div class="grid grid-cols-2 gap-4 items-start">
-          <FormField
-            v-slot="{ value, handleChange, errorMessage }"
+          <FloatingField
+            v-slot="{ value, handleChange }"
             name="purchasePrice"
+            label="Harga Beli (Rp)"
+            required
           >
-            <FormItem>
-              <FormLabel
-                >Harga Beli (Rp)
-                <span class="text-destructive">*</span></FormLabel
-              >
+            <div class="content-start">
               <FormControl>
                 <Input
                   type="number"
@@ -436,16 +410,15 @@ const onSubmit = handleSubmit((values) => {
                   @update:model-value="handleChange(Number($event))"
                 />
               </FormControl>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
 
-          <FormField
-            v-slot="{ value, handleChange, errorMessage }"
+          <FloatingField
+            v-slot="{ value, handleChange }"
             name="fundingSourceId"
+            label="Sumber Dana"
           >
-            <FormItem>
-              <FormLabel>Sumber Dana</FormLabel>
+            <div class="content-start">
               <Select
                 :model-value="value"
                 :disabled="isSaving"
@@ -465,30 +438,27 @@ const onSubmit = handleSubmit((values) => {
                   </SelectItem>
                 </SelectContent>
               </Select>
-              <FormMessage>{{ errorMessage }}</FormMessage>
-            </FormItem>
-          </FormField>
+            </div>
+          </FloatingField>
         </div>
 
-        <FormField
-          v-slot="{ componentField, errorMessage }"
+        <FloatingField
+          v-slot="{ componentField }"
           name="notes"
+          label="Catatan / Keterangan"
         >
-          <FormItem>
-            <FormLabel>Catatan / Keterangan</FormLabel>
+          <div class="content-start">
             <FormControl>
               <Textarea
                 v-bind="componentField"
-                placeholder="Masukkan catatan tambahan mengenai aset"
                 :disabled="isSaving"
                 rows="4"
                 class="resize-none"
                 style="field-sizing: fixed"
               />
             </FormControl>
-            <FormMessage>{{ errorMessage }}</FormMessage>
-          </FormItem>
-        </FormField>
+          </div>
+        </FloatingField>
       </div>
     </div>
 

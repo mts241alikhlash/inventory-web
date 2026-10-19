@@ -54,23 +54,24 @@ function handleCancel() {
 <template>
   <div class="p-4 md:p-6 lg:p-8 w-full">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader class="flex flex-row items-center gap-4 border-b px-6 py-5">
-        <BackButton
-          label="Kembali ke daftar aset"
-          @click="handleCancel"
-        />
-        <div>
-          <CardTitle class="text-2xl font-bold tracking-tight"
-            >Tambah Aset Baru</CardTitle
-          >
-          <p class="text-sm text-muted-foreground mt-1">
-            Isi detail data aset logistik sekolah secara lengkap.
-          </p>
+      <CardHeader standard>
+        <div class="flex items-center gap-3">
+          <BackButton
+            label="Kembali ke daftar aset"
+            @click="handleCancel"
+          />
+          <div>
+            <CardTitle size="lg">Tambah Aset Baru</CardTitle>
+            <p class="text-sm text-muted-foreground mt-1">
+              Isi detail data aset logistik sekolah secara lengkap.
+            </p>
+          </div>
         </div>
       </CardHeader>
-      <CardContent class="p-6">
+      <CardContent variant="standard">
         <AssetForm
           :metadata="metadata"
           :is-saving="isSaving"
