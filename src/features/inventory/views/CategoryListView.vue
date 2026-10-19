@@ -118,9 +118,7 @@ onMounted(() => {
       <CardHeader
         class="flex flex-row items-center justify-between pb-4 border-b"
       >
-        <CardTitle class="text-xl font-bold text-slate-800"
-          >Kategori Aset</CardTitle
-        >
+        <CardTitle size="lg">Kategori Aset</CardTitle>
         <Button
           v-if="can('inventory-reference-data.create')"
           size="sm"

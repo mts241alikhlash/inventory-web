@@ -13,10 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
   FormControl,
+  FloatingField,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from '@mts241alikhlash/ui'
 import { Switch } from '@mts241alikhlash/ui/switch'
 import type { InventoryReferenceItem } from '../types'
@@ -101,39 +99,35 @@ const onSubmit = handleSubmit((values) => {
       >
         <ScrollArea class="flex-1 min-h-0 px-1 py-4">
           <div class="space-y-4">
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="code"
+              label="Kode Kondisi"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Kode Kondisi</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: COND-BAIK"
                     :disabled="isSaving || isEdit"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="name"
+              label="Nama Kondisi"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Nama Kondisi</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Baik / Layak Pakai"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
             <FormField
               v-slot="{ value, handleChange }"

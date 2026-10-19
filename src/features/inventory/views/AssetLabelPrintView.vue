@@ -3,7 +3,12 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { DataTable, SearchInput } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
-import { Card, CardHeader, CardTitle } from '@mts241alikhlash/ui/card'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from '@mts241alikhlash/ui/card'
 import {
   Select,
   SelectContent,
@@ -145,15 +150,12 @@ onMounted(async () => {
 <template>
   <div class="p-4 md:p-6 lg:p-8">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader
-        class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b px-6 py-5 gap-4"
-      >
+      <CardHeader standard>
         <div>
-          <CardTitle class="text-2xl font-bold tracking-tight"
-            >Cetak Label Aset</CardTitle
-          >
+          <CardTitle size="lg">Cetak Label Aset</CardTitle>
           <p class="text-sm text-muted-foreground mt-1">
             Pilih satu atau beberapa aset untuk mencetak label seluruh unitnya
             sekaligus.
@@ -192,7 +194,6 @@ onMounted(async () => {
             </SelectContent>
           </Select>
           <Button
-            class="w-full sm:w-auto"
             :disabled="selectedUnitCount === 0"
             @click="printSelectedLabels"
           >
@@ -202,7 +203,7 @@ onMounted(async () => {
         </div>
       </CardHeader>
 
-      <div class="p-6">
+      <CardContent variant="standard">
         <div class="mb-6 flex flex-col gap-3 lg:flex-row lg:items-center">
           <Select
             :model-value="filters.categoryId"
@@ -241,7 +242,7 @@ onMounted(async () => {
           item-label="aset"
           @selection-change="handleSelectionChange"
         />
-      </div>
+      </CardContent>
     </Card>
   </div>
 

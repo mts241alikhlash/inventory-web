@@ -13,10 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FloatingField,
 } from '@mts241alikhlash/ui'
 import type { InventoryReferenceItem } from '../types'
 
@@ -107,61 +104,53 @@ const onSubmit = handleSubmit((values) => {
       >
         <ScrollArea class="flex-1 min-h-0 px-1 py-4">
           <div class="space-y-4">
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="code"
+              label="Kode Kategori"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Kode Kategori</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: CAT-ELEK"
                     :disabled="isSaving || isEdit"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="name"
+              label="Nama Kategori"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Nama Kategori</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Elektronik"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="depreciationRatePercent"
+              label="Penyusutan Tahunan (%)"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium"
-                  >Penyusutan Tahunan (%)</FormLabel
-                >
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
                     type="number"
                     min="0"
                     max="100"
-                    placeholder="Contoh: 10"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
           </div>
         </ScrollArea>
 

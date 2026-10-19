@@ -13,10 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FloatingField,
   Textarea,
 } from '@mts241alikhlash/ui'
 import type { InventoryReferenceItem } from '../types'
@@ -113,112 +110,96 @@ const onSubmit = handleSubmit((values) => {
       >
         <ScrollArea class="flex-1 min-h-0 px-1 py-4">
           <div class="space-y-4">
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="code"
+              label="Kode Lokasi"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Kode Lokasi</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: LOC-LAB-KOMP"
                     :disabled="isSaving || isEdit"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="name"
+              label="Nama Lokasi"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Nama Lokasi</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Laboratorium Komputer"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="building"
+              label="Gedung"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Gedung</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Gedung B Lantai 2"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="room"
+              label="Ruangan"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Ruangan</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Ruang Lab 01"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="rack"
+              label="Rak (Opsional)"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium"
-                  >Rak (Opsional)</FormLabel
-                >
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Lemari A"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="description"
+              label="Keterangan / Deskripsi"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium"
-                  >Keterangan / Deskripsi</FormLabel
-                >
+              <div class="content-start">
                 <FormControl>
                   <Textarea
                     v-bind="componentField"
-                    placeholder="Tambahkan keterangan lokasi jika ada..."
                     :disabled="isSaving"
                     rows="3"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
           </div>
         </ScrollArea>
 

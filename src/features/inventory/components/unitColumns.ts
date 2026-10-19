@@ -1,6 +1,6 @@
 import type { InventoryAssetUnit } from '../types'
 import { Checkbox } from '@mts241alikhlash/ui/checkbox'
-import { Button } from '@mts241alikhlash/ui/button'
+import { ActionCell } from '@mts241alikhlash/ui'
 import type { ColumnDef } from '@tanstack/vue-table'
 import { Pencil, Printer, Trash2 } from '@lucide/vue'
 import { h } from 'vue'
@@ -85,40 +85,30 @@ export const createUnitColumns = (
     meta: { align: 'center' },
     cell: ({ row }) => {
       const unit = row.original
-      return h('div', { class: 'flex items-center justify-center gap-1' }, [
-        h(
-          Button,
+      return h(ActionCell, {
+        hideEdit: true,
+        hideDelete: true,
+        items: [
           {
-            size: 'icon',
-            variant: 'ghost',
-            class: 'h-8 w-8',
+            label: 'Cetak label',
+            icon: Printer,
             onClick: () => actions.onPrint(unit),
           },
-          () => h(Printer, { class: 'size-4' }),
-        ),
-        h(
-          Button,
           {
-            size: 'icon',
-            variant: 'ghost',
-            class: 'h-8 w-8',
+            label: 'Ubah',
+            icon: Pencil,
             disabled: actions.isSaving,
             onClick: () => actions.onEdit(unit),
           },
-          () => h(Pencil, { class: 'size-4' }),
-        ),
-        h(
-          Button,
           {
-            size: 'icon',
-            variant: 'ghost',
-            class: 'text-destructive hover:text-destructive h-8 w-8',
+            label: 'Hapus',
+            icon: Trash2,
+            destructive: true,
             disabled: actions.isSaving || !actions.canDelete,
             onClick: () => actions.onDelete(unit),
           },
-          () => h(Trash2, { class: 'size-4' }),
-        ),
-      ])
+        ],
+      })
     },
     enableSorting: false,
     enableHiding: false,

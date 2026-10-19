@@ -18,10 +18,8 @@ import {
   DialogHeader,
   DialogTitle,
   FormControl,
+  FloatingField,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from '@mts241alikhlash/ui'
 import { Switch } from '@mts241alikhlash/ui/switch'
 import type { InventoryReferenceItem, InventoryStatusKey } from '../types'
@@ -137,48 +135,42 @@ const onSubmit = handleSubmit((values) => {
       >
         <ScrollArea class="flex-1 min-h-0 px-1 py-4">
           <div class="space-y-4">
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="code"
+              label="Kode Status"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Kode Status</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: STATUS-TERSEDIA"
                     :disabled="isSaving || isEdit"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ componentField }"
               name="name"
+              label="Nama Status"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium">Nama Status</FormLabel>
+              <div class="content-start">
                 <FormControl>
                   <Input
                     v-bind="componentField"
-                    placeholder="Contoh: Tersedia / Dipinjam"
                     :disabled="isSaving"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
-            <FormField
+            <FloatingField
               v-slot="{ value, handleChange }"
               name="systemKey"
+              label="Peran dalam Alur Pinjam"
             >
-              <FormItem>
-                <FormLabel class="text-sm font-medium"
-                  >Peran dalam Alur Pinjam</FormLabel
-                >
+              <div class="content-start">
                 <Select
                   :model-value="value"
                   :disabled="isSaving"
@@ -213,9 +205,8 @@ const onSubmit = handleSubmit((values) => {
                   (pinjam/kembalikan/setujui). Setiap peran hanya boleh dipakai
                   oleh satu status.
                 </p>
-                <FormMessage />
-              </FormItem>
-            </FormField>
+              </div>
+            </FloatingField>
 
             <FormField
               v-slot="{ value, handleChange }"

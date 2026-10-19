@@ -4,7 +4,12 @@ import { useRouter } from 'vue-router'
 import { watchDebounced } from '@vueuse/core'
 import { DataTable, SearchInput } from '@mts241alikhlash/ui'
 import { Button } from '@mts241alikhlash/ui/button'
-import { Card, CardHeader, CardTitle } from '@mts241alikhlash/ui/card'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from '@mts241alikhlash/ui/card'
 import {
   Select,
   SelectContent,
@@ -179,15 +184,12 @@ onMounted(async () => {
 <template>
   <div class="p-4 md:p-6 lg:p-8">
     <Card
+      gap="none"
       class="overflow-hidden rounded-2xl shadow-sm shadow-black/5 ring-1 ring-black/4"
     >
-      <CardHeader
-        class="flex flex-row items-center justify-between border-b px-6 py-5 gap-4"
-      >
+      <CardHeader standard>
         <div>
-          <CardTitle class="text-xl sm:text-2xl font-bold tracking-tight"
-            >Daftar Aset</CardTitle
-          >
+          <CardTitle size="lg">Daftar Aset</CardTitle>
         </div>
         <div class="flex items-center gap-2">
           <Button
@@ -202,7 +204,7 @@ onMounted(async () => {
         </div>
       </CardHeader>
 
-      <div class="p-6">
+      <CardContent variant="standard">
         <div class="mb-6">
           <div class="hidden lg:flex lg:flex-row lg:items-center gap-3">
             <Select
@@ -327,7 +329,7 @@ onMounted(async () => {
           :is-loading="loading"
           item-label="aset"
         />
-      </div>
+      </CardContent>
     </Card>
   </div>
 
