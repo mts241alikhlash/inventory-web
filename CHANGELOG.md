@@ -1,5 +1,11 @@
 # inventory-web
 
+## 1.4.2
+
+### Patch Changes
+
+- d9a8307: Card, judul, dan isi memakai standar `@mts241alikhlash/ui` 1.8; field form memakai `FloatingField`; aksi baris unit aset memakai `ActionCell items`.
+
 ## 1.4.1
 
 ### Patch Changes
