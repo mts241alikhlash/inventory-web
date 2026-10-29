@@ -15,6 +15,8 @@ configureAuth({
   appSubtitle: 'Sistem Informasi Manajemen Aset',
   logoAlt: 'Logo 241 Inventory',
   loginTitle: 'Masuk ke 241 Inventory',
+  loginSubtitle: 'Manajemen aset dan inventaris madrasah.',
+  identifierLabel: 'Nama pengguna',
   homeRoute: '/dashboard',
   ssoApp: 'inventory',
 })
