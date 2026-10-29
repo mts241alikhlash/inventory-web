@@ -1,6 +1,7 @@
 import '@mts241alikhlash/web-shared/types/router'
 import { createRouter, createWebHistory } from 'vue-router'
 import { ssoAuthRoutes } from '@/features/platform/auth'
+import { profileRoutes } from '@/features/platform/profile'
 import { authSessionService, useAuthStore } from '@/features/platform/auth'
 import { dashboardRoutes } from '@/features/platform/dashboard'
 import { inventoryRoutes } from '@/features/inventory/routes'
@@ -18,7 +19,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/layouts/AppLayout.vue'),
-      children: [...dashboardRoutes, ...inventoryRoutes],
+      children: [...dashboardRoutes, ...inventoryRoutes, ...profileRoutes],
     },
     {
       path: '/:pathMatch(.*)*',

@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const inventoryRoutes: RouteRecordRaw[] = [
   {
-    path: '/inventory/assets',
+    path: '/assets',
     name: 'inventory-assets',
     component: () => import('./views/AssetListView.vue'),
     meta: {
@@ -16,7 +16,7 @@ export const inventoryRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/inventory/assets/create',
+    path: '/assets/create',
     name: 'inventory-assets-create',
     component: () => import('./views/AssetCreateView.vue'),
     meta: {
@@ -24,14 +24,14 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       title: 'Tambah Aset',
       description: 'Tambah data aset logistik sekolah baru.',
       breadcrumbs: [
-        { title: 'Inventaris', href: '/inventory/assets' },
-        { title: 'Daftar Aset', href: '/inventory/assets' },
+        { title: 'Inventaris', href: '/assets' },
+        { title: 'Daftar Aset', href: '/assets' },
         { title: 'Tambah Aset' },
       ],
     },
   },
   {
-    path: '/inventory/assets/:id/edit',
+    path: '/assets/:id/edit',
     name: 'inventory-assets-edit',
     component: () => import('./views/AssetEditView.vue'),
     meta: {
@@ -39,14 +39,14 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       title: 'Ubah Detail Aset',
       description: 'Sesuaikan detail data aset logistik sekolah.',
       breadcrumbs: [
-        { title: 'Inventaris', href: '/inventory/assets' },
-        { title: 'Daftar Aset', href: '/inventory/assets' },
+        { title: 'Inventaris', href: '/assets' },
+        { title: 'Daftar Aset', href: '/assets' },
         { title: 'Ubah Detail Aset' },
       ],
     },
   },
   {
-    path: '/inventory/assets/label-printing',
+    path: '/assets/label-printing',
     name: 'inventory-assets-label-printing',
     component: () => import('./views/AssetLabelPrintView.vue'),
     meta: {
@@ -60,7 +60,7 @@ export const inventoryRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/inventory/categories',
+    path: '/categories',
     name: 'inventory-categories',
     component: () => import('./views/CategoryListView.vue'),
     meta: {
@@ -69,12 +69,12 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       description: 'Klasifikasikan aset berdasarkan kategori.',
       breadcrumbs: [
         { title: 'Referensi', href: '#' },
-        { title: 'Kategori Aset', href: '/inventory/categories' },
+        { title: 'Kategori Aset', href: '/categories' },
       ],
     },
   },
   {
-    path: '/inventory/funding-sources',
+    path: '/funding-sources',
     name: 'inventory-funding-sources',
     component: () => import('./views/FundingSourceListView.vue'),
     meta: {
@@ -83,12 +83,12 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       description: 'Kelola data asal-usul sumber dana pembelian aset.',
       breadcrumbs: [
         { title: 'Referensi', href: '#' },
-        { title: 'Sumber Dana', href: '/inventory/funding-sources' },
+        { title: 'Sumber Dana', href: '/funding-sources' },
       ],
     },
   },
   {
-    path: '/inventory/locations',
+    path: '/locations',
     name: 'inventory-locations',
     component: () => import('./views/LocationListView.vue'),
     meta: {
@@ -97,12 +97,12 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       description: 'Kelola lokasi dan ruangan penempatan aset.',
       breadcrumbs: [
         { title: 'Referensi', href: '#' },
-        { title: 'Daftar Lokasi', href: '/inventory/locations' },
+        { title: 'Daftar Lokasi', href: '/locations' },
       ],
     },
   },
   {
-    path: '/inventory/conditions',
+    path: '/conditions',
     name: 'inventory-conditions',
     component: () => import('./views/ConditionListView.vue'),
     meta: {
@@ -111,12 +111,12 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       description: 'Pantau status kelayakan dan kondisi fisik aset.',
       breadcrumbs: [
         { title: 'Referensi', href: '#' },
-        { title: 'Kondisi Aset', href: '/inventory/conditions' },
+        { title: 'Kondisi Aset', href: '/conditions' },
       ],
     },
   },
   {
-    path: '/inventory/statuses',
+    path: '/statuses',
     name: 'inventory-statuses',
     component: () => import('./views/StatusListView.vue'),
     meta: {
@@ -125,12 +125,12 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       description: 'Pantau status transaksi peminjaman aset.',
       breadcrumbs: [
         { title: 'Referensi', href: '#' },
-        { title: 'Status Aset', href: '/inventory/statuses' },
+        { title: 'Status Aset', href: '/statuses' },
       ],
     },
   },
   {
-    path: '/inventory/loans',
+    path: '/loans',
     name: 'inventory-loans',
     component: () => import('./views/LoanListView.vue'),
     meta: {
@@ -144,7 +144,7 @@ export const inventoryRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/inventory/loans/create',
+    path: '/loans/create',
     name: 'inventory-loans-create',
     component: () => import('./views/LoanCreateView.vue'),
     meta: {
@@ -152,14 +152,14 @@ export const inventoryRoutes: RouteRecordRaw[] = [
       title: 'Pinjam Aset',
       description: 'Ajukan permohonan peminjaman logistik sekolah baru.',
       breadcrumbs: [
-        { title: 'Inventaris', href: '/inventory/loans' },
-        { title: 'Transaksi Peminjaman', href: '/inventory/loans' },
+        { title: 'Inventaris', href: '/loans' },
+        { title: 'Transaksi Peminjaman', href: '/loans' },
         { title: 'Pinjam Aset' },
       ],
     },
   },
   {
-    path: '/inventory/history',
+    path: '/history',
     name: 'inventory-history',
     component: () => import('./views/CirculationHistoryView.vue'),
     meta: {
@@ -173,7 +173,7 @@ export const inventoryRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/inventory/workflows',
+    path: '/workflows',
     name: 'inventory-workflows',
     component: () => import('./views/WorkflowListView.vue'),
     meta: {
@@ -187,7 +187,7 @@ export const inventoryRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/inventory/approvals',
+    path: '/approvals',
     name: 'inventory-approvals',
     component: () => import('./views/ApprovalListView.vue'),
     meta: {

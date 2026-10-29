@@ -32,14 +32,14 @@ describe('inventory route tree', () => {
   })
 
   it('renders shell routes through the layout without changing their URL', () => {
-    const resolved = buildRouter().resolve('/inventory/assets')
+    const resolved = buildRouter().resolve('/assets')
     expect(resolved.name).toBe('inventory-assets')
     expect(resolved.matched).toHaveLength(2)
     expect(resolved.matched[0]?.components?.default).toBe(Layout)
   })
 
   it('keeps params working for nested absolute paths', () => {
-    const resolved = buildRouter().resolve('/inventory/assets/42/edit')
+    const resolved = buildRouter().resolve('/assets/42/edit')
     expect(resolved.name).toBe('inventory-assets-edit')
     expect(resolved.params.id).toBe('42')
     expect(resolved.matched).toHaveLength(2)

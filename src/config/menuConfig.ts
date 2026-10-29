@@ -34,12 +34,12 @@ export const menuSections: MenuSection[] = [
     items: [
       {
         title: 'menu.assetList',
-        url: '/inventory/assets',
+        url: '/assets',
         icon: Package,
       },
       {
         title: 'menu.labelPrinting',
-        url: '/inventory/assets/label-printing',
+        url: '/assets/label-printing',
         icon: Printer,
       },
     ],
@@ -55,8 +55,8 @@ export const menuSections: MenuSection[] = [
         url: '#',
         icon: ClipboardList,
         items: [
-          { title: 'menu.loanTransaction', url: '/inventory/loans' },
-          { title: 'menu.circulationHistory', url: '/inventory/history' },
+          { title: 'menu.loanTransaction', url: '/loans' },
+          { title: 'menu.circulationHistory', url: '/history' },
         ],
       },
     ],
@@ -72,10 +72,10 @@ export const menuSections: MenuSection[] = [
         url: '#',
         icon: CheckSquare,
         items: [
-          { title: 'menu.approvalList', url: '/inventory/approvals' },
+          { title: 'menu.approvalList', url: '/approvals' },
           {
             title: 'menu.approvalFlow',
-            url: '/inventory/workflows',
+            url: '/workflows',
             requiredPermission: 'inventory-approvals.create',
           },
         ],
@@ -94,11 +94,11 @@ export const menuSections: MenuSection[] = [
         url: '#',
         icon: ListChecks,
         items: [
-          { title: 'menu.assetCategory', url: '/inventory/categories' },
-          { title: 'menu.fundingSource', url: '/inventory/funding-sources' },
-          { title: 'menu.location', url: '/inventory/locations' },
-          { title: 'menu.assetCondition', url: '/inventory/conditions' },
-          { title: 'menu.assetStatus', url: '/inventory/statuses' },
+          { title: 'menu.assetCategory', url: '/categories' },
+          { title: 'menu.fundingSource', url: '/funding-sources' },
+          { title: 'menu.location', url: '/locations' },
+          { title: 'menu.assetCondition', url: '/conditions' },
+          { title: 'menu.assetStatus', url: '/statuses' },
         ],
       },
     ],
